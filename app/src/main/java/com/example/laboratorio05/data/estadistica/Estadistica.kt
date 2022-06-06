@@ -15,9 +15,9 @@ class Estadistica(
 
     @ColumnInfo(name="distrito")
     val distrito: String,
-    @ColumnInfo(name="positivos-vivos")
+    @ColumnInfo(name="positivosVivos")
     val positivosVivos: Int,
-    @ColumnInfo(name="positivos-defuncion")
+    @ColumnInfo(name="positivosDefuncion")
     val positivosDefucion: Int,
     @ColumnInfo(name="negativo")
     val negativos: Int,

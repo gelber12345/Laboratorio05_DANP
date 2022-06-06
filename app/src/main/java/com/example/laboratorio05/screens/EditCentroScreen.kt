@@ -1,7 +1,9 @@
 package com.example.laboratorio05.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -46,11 +48,13 @@ fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: Cent
     }
 
 
+    val scrollState= rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
+            .verticalScroll(scrollState)
 
     ) {
 
