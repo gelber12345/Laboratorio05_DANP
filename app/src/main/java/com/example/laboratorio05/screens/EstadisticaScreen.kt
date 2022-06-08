@@ -45,20 +45,21 @@ fun EstadisticaMainScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
+
     ) {
         //////////////
 
         var textBusqueda by remember { mutableStateOf("") }
         var searching by remember { mutableStateOf(false) }
 
-        val onTextChange = { text : String ->
+        val onTextChange = { text: String ->
             textBusqueda = text
         }
         CustomTextField(
-            title = "BUSQUEDA ",
+            title = "BÚSQUEDA",
             textState = textBusqueda,
             onTextChange = onTextChange,
-            keyboardType = KeyboardType.Text
+            keyboardType = KeyboardType.Text,
         )
         //////////////
         Row(
@@ -72,7 +73,7 @@ fun EstadisticaMainScreen(
                 navController.navigate(AppScreens.EditEstadisticaScreen.route)
                 navController.previousBackStackEntry?.savedStateHandle?.remove<Estadistica>("estadistica")
             }) {
-                Text("Add")
+                Text("AGREGAR")
             }
             Button(onClick = {
                 searching = true
@@ -84,7 +85,7 @@ fun EstadisticaMainScreen(
                 searching = false
                 viewModel.deleteAllEstadistica()
             }) {
-                Text("Clear")
+                Text("ELIMINAR DATOS")
             }
         }
         //////////////
@@ -96,7 +97,11 @@ fun EstadisticaMainScreen(
 
             val list = if (searching) searchResults else allEstadisticas
             item {
-                TitleRowEstadistica(head1 = "ID", head2 = "Distrito", head3 = "Casos Positivos (Vivos)")
+                TitleRowEstadistica(
+                    head1 = "Id",
+                    head2 = "Distrito",
+                    head3 = "# Casos Positivos (Vivos)"
+                )
             }
 
             items(list) { estadistica ->
@@ -114,30 +119,46 @@ fun TitleRowEstadistica(head1: String, head2: String, head3: String) {
             .fillMaxWidth()
             .padding(5.dp)
     ) {
-        Text(head1, color = Color.White,
+        Text(
+            head1, color = Color.White,
             modifier = Modifier
-                .weight(0.1f))
-        Text(head2, color = Color.White,
+                .weight(0.1f)
+        )
+        Text(
+            head2, color = Color.White,
             modifier = Modifier
-                .weight(0.2f))
-        Text(head3, color = Color.White,
-            modifier = Modifier.weight(0.2f))
+                .weight(0.2f)
+        )
+        Text(
+            head3, color = Color.White,
+            modifier = Modifier.weight(0.2f)
+        )
     }
 }
+
 @Composable
-fun EstadisticaRow(estadistica: Estadistica,navController: NavController,viewModel: EstadisticaViewModel) {
+fun EstadisticaRow(
+    estadistica: Estadistica,
+    navController: NavController,
+    viewModel: EstadisticaViewModel
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(5.dp)
             .clickable {
 
-                navController.currentBackStackEntry?.savedStateHandle?.set("estadistica",estadistica)
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    "estadistica",
+                    estadistica
+                )
                 navController.navigate(AppScreens.EditEstadisticaScreen.route)
             }
     ) {
-        Text(estadistica.id.toString(), modifier = Modifier
-            .weight(0.1f))
+        Text(
+            estadistica.id.toString(), modifier = Modifier
+                .weight(0.1f)
+        )
         Text(estadistica.distrito, modifier = Modifier.weight(0.2f))
         Text(estadistica.positivosVivos.toString(), modifier = Modifier.weight(0.2f))
     }

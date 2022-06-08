@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Estadistica::class], version = 2)
-abstract class EstadisticaDatabase: RoomDatabase() {
+abstract class EstadisticaDatabase : RoomDatabase() {
 
     abstract fun estadisticaDao(): EstadisticaDao
 
@@ -21,8 +21,10 @@ abstract class EstadisticaDatabase: RoomDatabase() {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext,
-                    EstadisticaDatabase::class.java, "estadistica")
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    EstadisticaDatabase::class.java, "estadistica"
+                )
                     .build()
                 INSTANCE = instance
                 return instance

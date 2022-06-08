@@ -21,7 +21,11 @@ import com.example.laboratorio05.data.estadistica.EstadisticaViewModel
 import com.example.laboratorio05.navigation.AppScreens
 
 @Composable
-fun EditEstadisticaScreen(navController: NavController, estadistica: Estadistica, viewModel: EstadisticaViewModel) {
+fun EditEstadisticaScreen(
+    navController: NavController,
+    estadistica: Estadistica,
+    viewModel: EstadisticaViewModel
+) {
 
     var distrito by remember { mutableStateOf(estadistica.distrito) }
     var positivosVivos by remember { mutableStateOf(estadistica.positivosVivos.toString()) }
@@ -29,25 +33,25 @@ fun EditEstadisticaScreen(navController: NavController, estadistica: Estadistica
     var negativos by remember { mutableStateOf(estadistica.negativos.toString()) }
     var pendientes by remember { mutableStateOf(estadistica.pendientes.toString()) }
 
-    val onDistritoTextChange = { text : String ->
+    val onDistritoTextChange = { text: String ->
         distrito = text
     }
 
-    val onPositivosVivosTextChange = { text : String ->
+    val onPositivosVivosTextChange = { text: String ->
         positivosVivos = text
     }
-    val onPositivosDefucionTextChange = { text : String ->
+    val onPositivosDefucionTextChange = { text: String ->
         positivosDefucion = text
     }
 
-    val onNegativosTextChange = { text : String ->
+    val onNegativosTextChange = { text: String ->
         negativos = text
     }
-    val onPendientesTextChange = { text : String ->
+    val onPendientesTextChange = { text: String ->
         pendientes = text
     }
 
-    val scrollState= rememberScrollState()
+    val scrollState = rememberScrollState()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,32 +71,32 @@ fun EditEstadisticaScreen(navController: NavController, estadistica: Estadistica
         )
 
         CustomTextFieldEstadistica(
-            title = "Positivos Vivos ",
+            title = "Cantidad de positivos vivos",
             textState = positivosVivos,
             onTextChange = onPositivosVivosTextChange,
             keyboardType = KeyboardType.Number
         )
 
         CustomTextFieldEstadistica(
-            title = "Positivos Defucion",
+            title = "Cantidad de positivos defucion",
             textState = positivosDefucion,
             onTextChange = onPositivosDefucionTextChange,
             keyboardType = KeyboardType.Number
         )
         CustomTextFieldEstadistica(
-            title = "Negativos",
+            title = "Cantidad de casos negativos",
             textState = negativos,
             onTextChange = onNegativosTextChange,
             keyboardType = KeyboardType.Number
         )
         CustomTextFieldEstadistica(
-            title = "Pendientes",
+            title = "Cantidad de casos pendientes",
             textState = pendientes,
             onTextChange = onPendientesTextChange,
             keyboardType = KeyboardType.Number
         )
 
-        if ( estadistica.id != 0){
+        if (estadistica.id != 0) {
             Button(onClick = {
                 viewModel.deleteEstadisticaById(estadistica.id)
                 navController.navigate(AppScreens.EstadisticaScreen.route)
@@ -103,33 +107,33 @@ fun EditEstadisticaScreen(navController: NavController, estadistica: Estadistica
             Button(onClick = {
                 viewModel.updateEstadistica(
                     Estadistica(
-                    estadistica.id!!.toInt(),
-                    distrito,
-                    positivosVivos.toInt(),
-                    positivosDefucion.toInt(),
-                    negativos.toInt(),
-                    pendientes.toInt()
-                )
+                        estadistica.id!!.toInt(),
+                        distrito,
+                        positivosVivos.toInt(),
+                        positivosDefucion.toInt(),
+                        negativos.toInt(),
+                        pendientes.toInt()
+                    )
                 )
                 navController.navigate(AppScreens.EstadisticaScreen.route)
             }) {
                 Text("GUARDAR")
             }
-        }else{
+        } else {
             Button(onClick = {
                 viewModel.insertEstadistica(
                     Estadistica(
-                    0,
-                    distrito,
-                    positivosVivos.toInt(),
-                    positivosDefucion.toInt(),
-                    negativos.toInt(),
-                    pendientes.toInt()
-                )
+                        0,
+                        distrito,
+                        positivosVivos.toInt(),
+                        positivosDefucion.toInt(),
+                        negativos.toInt(),
+                        pendientes.toInt()
+                    )
                 )
                 navController.navigate(AppScreens.EstadisticaScreen.route)
             }) {
-                Text("ADD")
+                Text("AGREGAR")
             }
         }
     }
@@ -152,7 +156,9 @@ fun CustomTextFieldEstadistica(
         singleLine = true,
         label = { Text(title) },
         modifier = Modifier.padding(10.dp),
-        textStyle = TextStyle(fontWeight = FontWeight.Bold,
-            fontSize = 30.sp)
+        textStyle = TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp
+        )
     )
 }

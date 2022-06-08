@@ -14,7 +14,7 @@ import com.example.laboratorio05.screens.EstadisticaScreen
 import com.example.laboratorio05.screens.FirstScreen
 
 @Composable
-fun  AppNavigation (
+fun AppNavigation(
     navController: NavHostController,
     viewModelCentro: CentroViewModel,
     viewModelEstadistica: EstadisticaViewModel
@@ -25,17 +25,17 @@ fun  AppNavigation (
             route = AppScreens.FirstScreen.route
         ) {
             FirstScreen(navController, viewModelCentro)
-
         }
         composable(
             route = AppScreens.EditCentroScreen.route,
         ) {
 
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<Centro>("centro")
-            if (result!= null){
+            val result =
+                navController.previousBackStackEntry?.savedStateHandle?.get<Centro>("centro")
+            if (result != null) {
                 EditCentroScreen(navController, result, viewModelCentro)
-            }else{
-                EditCentroScreen(navController, Centro(0, 0.0,0.0,"","",""), viewModelCentro)
+            } else {
+                EditCentroScreen(navController, Centro(0, 0.0, 0.0, "", "", ""), viewModelCentro)
             }
         }
         composable(
@@ -48,11 +48,16 @@ fun  AppNavigation (
             route = AppScreens.EditEstadisticaScreen.route,
         ) {
 
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<Estadistica>("estadistica")
-            if (result!= null){
+            val result =
+                navController.previousBackStackEntry?.savedStateHandle?.get<Estadistica>("estadistica")
+            if (result != null) {
                 EditEstadisticaScreen(navController, result, viewModelEstadistica)
-            }else{
-                EditEstadisticaScreen(navController, Estadistica(0, "",0,0,0,0), viewModelEstadistica)
+            } else {
+                EditEstadisticaScreen(
+                    navController,
+                    Estadistica(0, "", 0, 0, 0, 0),
+                    viewModelEstadistica
+                )
             }
         }
 

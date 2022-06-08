@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "centro")
-class Centro (
+class Centro(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
@@ -23,4 +23,4 @@ class Centro (
     val horario: String,
     @ColumnInfo(name = "direccion")
     val direccion: String
-): Parcelable
+) : Parcelable

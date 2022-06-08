@@ -15,9 +15,7 @@ class EstadisticaRepository(application: Application) {
         estadisticaDao = database.estadisticaDao()
     }
 
-
     val readAllEstadistica: LiveData<List<Estadistica>> = estadisticaDao.getAllDataEstadistica()
-
 
     suspend fun insertEstadistica(estadistica: Estadistica) {
         estadisticaDao.insertEstadistica(estadistica)
@@ -26,6 +24,7 @@ class EstadisticaRepository(application: Application) {
     suspend fun updateEstadistica(estadistica: Estadistica) {
         estadisticaDao.updateEstadistica(estadistica)
     }
+
     suspend fun deleteEstadisticaById(id: Int) {
         estadisticaDao.deleteEstadisticaById(id)
     }

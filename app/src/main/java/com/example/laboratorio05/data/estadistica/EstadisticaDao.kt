@@ -8,12 +8,14 @@ interface EstadisticaDao {
     @Query("SELECT * FROM estadistica")
     fun getAllDataEstadistica(): LiveData<List<Estadistica>>
 
-    @Query("SELECT * FROM estadistica WHERE distrito LIKE :search " +
-            "or positivosVivos LIKE :search " +
-            "or positivosDefuncion LIKE :search " +
-            "or negativo LIKE :search " +
-            "or pendientes LIKE :search ")
-    fun findEstadistica(search: String):List<Estadistica>
+    @Query(
+        "SELECT * FROM estadistica WHERE distrito LIKE :search " +
+                "or positivosVivos LIKE :search " +
+                "or positivosDefuncion LIKE :search " +
+                "or negativo LIKE :search " +
+                "or pendientes LIKE :search "
+    )
+    fun findEstadistica(search: String): List<Estadistica>
 
 
     @Query("SELECT * FROM estadistica WHERE id = :id")

@@ -22,8 +22,10 @@ abstract class CentroDatabase : RoomDatabase() {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext,
-                    CentroDatabase::class.java, "jetpack")
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    CentroDatabase::class.java, "jetpack"
+                )
                     .build()
                 INSTANCE = instance
                 return instance

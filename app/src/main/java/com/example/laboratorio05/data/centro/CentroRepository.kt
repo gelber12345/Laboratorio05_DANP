@@ -16,7 +16,6 @@ class CentroRepository(application: Application) {
         centroDao = database.centroDao()
     }
 
-
     val readAllCentros: LiveData<List<Centro>> = centroDao.getAllDataCentro()
 
 
@@ -27,6 +26,7 @@ class CentroRepository(application: Application) {
     suspend fun updateCentro(centro: Centro) {
         centroDao.updateCentro(centro)
     }
+
     suspend fun deleteCentroById(id: Int) {
         centroDao.deleteCentroById(id)
     }

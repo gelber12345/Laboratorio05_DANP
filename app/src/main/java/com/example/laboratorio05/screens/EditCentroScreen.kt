@@ -21,7 +21,7 @@ import com.example.laboratorio05.data.centro.CentroViewModel
 import com.example.laboratorio05.navigation.AppScreens
 
 @Composable
-fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: CentroViewModel) {
+fun EditCentroScreen(navController: NavController, centro: Centro, viewModel: CentroViewModel) {
 
     var latitud by remember { mutableStateOf(centro.latitud.toString()) }
     var longitud by remember { mutableStateOf(centro.longitud.toString()) }
@@ -29,26 +29,26 @@ fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: Cent
     var horario by remember { mutableStateOf(centro.horario) }
     var direccion by remember { mutableStateOf(centro.direccion) }
 
-    val onLatitudTextChange = { text : String ->
+    val onLatitudTextChange = { text: String ->
         latitud = text
     }
 
-    val onLongitudTextChange = { text : String ->
+    val onLongitudTextChange = { text: String ->
         longitud = text
     }
-    val onDepartamentoTextChange = { text : String ->
+    val onDepartamentoTextChange = { text: String ->
         departamento = text
     }
 
-    val onHorarioTextChange = { text : String ->
+    val onHorarioTextChange = { text: String ->
         horario = text
     }
-    val onDireccionTextChange = { text : String ->
+    val onDireccionTextChange = { text: String ->
         direccion = text
     }
 
 
-    val scrollState= rememberScrollState()
+    val scrollState = rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -57,8 +57,6 @@ fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: Cent
             .verticalScroll(scrollState)
 
     ) {
-
-
         CustomTextField(
             title = "Latitud",
             textState = latitud,
@@ -86,13 +84,13 @@ fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: Cent
             keyboardType = KeyboardType.Text
         )
         CustomTextField(
-            title = "Direccion",
+            title = "Dirección",
             textState = direccion,
             onTextChange = onDireccionTextChange,
             keyboardType = KeyboardType.Text
         )
 
-        if ( centro.id != 0){
+        if (centro.id != 0) {
             Button(onClick = {
                 viewModel.deleteCentroById(centro.id)
                 navController.navigate(AppScreens.FirstScreen.route)
@@ -101,31 +99,35 @@ fun EditCentroScreen(navController: NavController,centro:Centro ,viewModel: Cent
             }
             Spacer(Modifier.height(20.0.dp))
             Button(onClick = {
-                viewModel.updateCentro(Centro(
-                    centro.id!!.toInt(),
-                    latitud.toDouble()!!,
-                    longitud.toDouble()!!,
-                    departamento,
-                    horario,
-                    direccion
-                ))
+                viewModel.updateCentro(
+                    Centro(
+                        centro.id!!.toInt(),
+                        latitud.toDouble()!!,
+                        longitud.toDouble()!!,
+                        departamento,
+                        horario,
+                        direccion
+                    )
+                )
                 navController.navigate(AppScreens.FirstScreen.route)
             }) {
                 Text("GUARDAR")
             }
-        }else{
+        } else {
             Button(onClick = {
-                viewModel.insertCentro(Centro(
-                    0,
-                    latitud.toDouble()!!,
-                    longitud.toDouble()!!,
-                    departamento,
-                    horario,
-                    direccion
-                ))
+                viewModel.insertCentro(
+                    Centro(
+                        0,
+                        latitud.toDouble()!!,
+                        longitud.toDouble()!!,
+                        departamento,
+                        horario,
+                        direccion
+                    )
+                )
                 navController.navigate(AppScreens.FirstScreen.route)
             }) {
-                Text("ADD")
+                Text("AGREGAR")
             }
         }
     }
@@ -148,7 +150,9 @@ fun CustomTextField(
         singleLine = true,
         label = { Text(title) },
         modifier = Modifier.padding(10.dp),
-        textStyle = TextStyle(fontWeight = FontWeight.Bold,
-            fontSize = 30.sp)
+        textStyle = TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp
+        )
     )
 }

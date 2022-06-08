@@ -7,21 +7,21 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName="estadistica")
+@Entity(tableName = "estadistica")
 class Estadistica(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int=0,
+    val id: Int = 0,
 
-    @ColumnInfo(name="distrito")
+    @ColumnInfo(name = "distrito")
     val distrito: String,
-    @ColumnInfo(name="positivosVivos")
+    @ColumnInfo(name = "positivosVivos")
     val positivosVivos: Int,
-    @ColumnInfo(name="positivosDefuncion")
+    @ColumnInfo(name = "positivosDefuncion")
     val positivosDefucion: Int,
-    @ColumnInfo(name="negativo")
+    @ColumnInfo(name = "negativo")
     val negativos: Int,
-    @ColumnInfo(name="pendientes")
+    @ColumnInfo(name = "pendientes")
     val pendientes: Int
 
 

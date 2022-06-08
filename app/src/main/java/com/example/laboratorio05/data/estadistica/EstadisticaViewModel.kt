@@ -16,34 +16,33 @@ class EstadisticaViewModel(appObj: Application) : AndroidViewModel(appObj) {
         return estadisticaRepository.readAllEstadistica
     }
 
-
     fun insertEstadistica(estadistica: Estadistica) {
         viewModelScope.launch {
             estadisticaRepository.insertEstadistica(estadistica = estadistica)
         }
-
     }
+
     fun findEstadistica(text: String) {
         viewModelScope.launch {
             estadisticaRepository.findEstadistica(text)
         }
-
     }
+
     fun updateEstadistica(estadistica: Estadistica) {
         viewModelScope.launch {
             estadisticaRepository.updateEstadistica(estadistica = estadistica)
         }
-
     }
+
     fun deleteEstadisticaById(id: Int) {
         viewModelScope.launch {
             estadisticaRepository.deleteEstadisticaById(id)
         }
     }
+
     fun deleteAllEstadistica() {
         viewModelScope.launch {
             estadisticaRepository.deleteAllEstadistica()
         }
     }
-
 }
